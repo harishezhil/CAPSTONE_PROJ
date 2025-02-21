@@ -11,3 +11,7 @@ def create_app():
         db.create_all()
     register_routes(app)
     return app
+
+if __name__ == "__main__":
+    app = create_app()
+    app.run(debug=True)  # Enable debug mode
