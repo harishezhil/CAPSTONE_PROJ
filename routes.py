@@ -8,7 +8,7 @@ auth = HTTPBasicAuth()
 @auth.verify_password
 def verify_password(username, password):
     user = User.query.filter_by(username=username, password=password).first()
-    return user is not None  # Allow authentication only if user exists
+    return user is not None 
 
 def register_routes(app):
     
@@ -52,7 +52,7 @@ def register_routes(app):
         try:
             user = User.query.get(id)
             
-            if user is None:  # FIX: Check if user exists before accessing attributes
+            if user is None:  
                 return jsonify({"error": "User not found"}), 404
 
             return jsonify({"id": user.id, "username": user.username})
@@ -64,7 +64,7 @@ def register_routes(app):
     def update_user(id):
         try:
             user = User.query.get(id)
-            if user is None:  # FIX: Check if user exists before updating
+            if user is None:  
                 return jsonify({"error": "User not found"}), 404
             
             data = request.json
@@ -87,7 +87,7 @@ def register_routes(app):
     def delete_user(id):
         try:
             user = User.query.get(id)
-            if user is None:  # FIX: Check if user exists before deleting
+            if user is None:  
                 return jsonify({"error": "User not found"}), 404
             
             db.session.delete(user)
